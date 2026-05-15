@@ -4,6 +4,12 @@ anybox_config.json
 # Windows 保留设备名
 nul
 
+# UPX 打包工具（二进制，不提交）
+upx.exe
+
+# 截图/临时图片
+ChatGPT Image*.png
+
 # Python
 __pycache__/
 *.py[cod]
