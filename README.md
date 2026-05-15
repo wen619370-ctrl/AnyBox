@@ -100,6 +100,21 @@ python -m PyInstaller AnyBox.spec --clean --noconfirm
 
 ---
 
+## 🤖 AI 代码声明
+
+本项目约 **90% 的代码由 AI（DeepSeek Chat / Claude 等大语言模型）生成**，人类仅负责需求描述、代码审查、调试修正与架构指导。
+
+具体而言：
+- **项目结构设计** — 人工规划，AI 辅助细化
+- **Python 源代码**（`core/`、`ui/`、`utils/` 等） — AI 生成，人工审查与修正
+- **UI 布局与样式** — AI 生成 PySide6 界面代码
+- **文档**（README、注释） — AI 生成，人工校订
+- **打包配置**（`AnyBox.spec`） — AI 生成
+
+这是一种 **"Vibe Coding"** 风格的开发实践——以自然语言驱动编码，将大语言模型作为主要代码生产力工具。
+
+---
+
 ## 📄 License
 
 本项目仅用于学习与研究目的。
