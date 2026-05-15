@@ -24,7 +24,6 @@ build/
 venv/
 .venv/
 env/
-sandbox/
 
 # IDE
 .vscode/
