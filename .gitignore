@@ -1,0 +1,40 @@
+# AnyBox 配置文件 - 包含敏感 API Key
+anybox_config.json
+
+# Windows 保留设备名
+nul
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# 虚拟环境
+venv/
+.venv/
+env/
+sandbox/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 日志
+logs/*.log
+logs/*.log.*
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 工具草稿（运行时生成）
+tools/_drafts/*.py
+!tools/_drafts/.gitkeep

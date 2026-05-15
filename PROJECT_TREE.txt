@@ -1,0 +1,62 @@
+AnyBox · 万用沙盒 — 项目目录结构
+================================================================
+core principles: 模块正交 · 信号解耦 · 按需加载
+
+project-root (LogicForge)/
+│
+├── main.py                          # 【入口】应用工厂、配置守卫、主窗口路由壳
+├── anybox_config.json               # 用户配置 (API Key, 模型预设, 主题)
+├── tools_config.json                # 工具索引注册表 (tool_id → 元信息映射)
+├── requirements.txt                 # 宿主自身依赖清单
+├── readme.md
+│
+├── core/                            # ———— 核心基础设施层 ————
+│   ├── __init__.py
+│   ├── signal_bus.py                # 全局信号总线单例 (从 main.py 抽离)
+│   ├── config_manager.py            # 配置读写、验证、模型预设模板
+│   ├── sandbox.py                   # QProcess 封装：启动/终止/输出拦截/重试逻辑
+│   ├── ai_client.py                 # 大模型 API 客户端 (统一封装多 Provider)
+│   └── tool_registry.py            # tools_config.json 的 CRUD 操作
+│
+├── ui/                              # ———— 视图层 (纯 UI 组件) ————
+│   ├── __init__.py
+│   ├── styles/                      # QSS 样式表
+│   │   └── anybox.qss
+│   ├── wizard/                      # 模块 1：初始化向导
+│   │   ├── __init__.py
+│   │   ├── onboarding_wizard.py     # QWizard 主容器
+│   │   ├── welcome_page.py          # 欢迎页
+│   │   ├── api_config_page.py       # API 配置页 (Provider 选择 + API Key)
+│   │   └── connectivity_page.py     # 连通性测试页
+│   ├── main_window/
+│   │   ├── __init__.py
+│   │   ├── tab_bar.py               # 自定义顶部 TabBar
+│   │   ├── chat_view.py             # 视图 A：对话创造区 (聊天界面)
+│   │   ├── tool_library_view.py     # 视图 B：工具库区 (卡片网格)
+│   │   └── tool_card.py             # 工具卡片组件
+│   └── tool_executor/
+│       ├── __init__.py
+│       ├── dialog.py                # DynamicToolDialog (非模态弹窗)
+│       └── ui_builder.py            # JSON → PySide6 控件 动态渲染引擎
+│
+├── data/                            # ———— 数据协议与模板 ————
+│   ├── __init__.py
+│   ├── json_schema.py               # AI 返回 JSON 的 Pydantic 校验模型
+│   └── system_prompt.py             # 严密封装的 System Prompt 模板
+│
+├── utils/                           # ———— 无状态工具函数 ————
+│   ├── __init__.py
+│   ├── pip_installer.py             # 静默 pip install + import 错误拦截
+│   └── message_parser.py            # [[SYS_MSG]] 协议解析器
+│
+├── sandbox/                         # ———— Python Embeddable 沙盒 ————
+│   └── python-embed/                # (从官网下载的免安装 Python，运行时填充)
+│       ├── python.exe
+│       ├── Lib/
+│       └── ...
+│
+└── tools/                           # ———— 已生成工具持久化目录 ————
+    └── {tool_id}/                   # 每个工具一个子目录
+        ├── meta.json                # 该工具的 UI 描述 + 元信息副本
+        ├── code.py                  # 纯逻辑 Python 脚本
+        └── outputs/                 # 工具执行输出文件目录
