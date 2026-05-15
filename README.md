@@ -38,7 +38,7 @@ AnyBox 自动生成脚本 → 沙盒执行 → 完成！
 
 ### 2. 配置 API Key
 
-首次启动会进入向导，指引你获取并填写 DeepSeek API Key。
+首次启动会进入向导，指引你获取并填写 DeepSeek API Key。（可以填其它的，但建议是用deepseek，因为开发者只测试了deepseek的）
 
 ### 3. 开始使用
 
